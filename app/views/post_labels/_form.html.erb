@@ -1,0 +1,17 @@
+<%= form_with(model: post_label) do |form| %>
+  <% if post_label.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(post_label.errors.count, "error") %> prohibited this post_label from being saved:</h2>
+
+      <ul>
+        <% post_label.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

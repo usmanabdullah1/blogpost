@@ -1,0 +1,61 @@
+<p style="color: green"><%= notice %></p>
+<h1>All Posts</h1>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Body</th>
+      <th scope="col">Date Upload</th>
+      <th scope="col">Image</th>
+      <th scope="col">Time to Read Blog</th>
+      <th scope="col">User ID</th>
+      <th scope="col">Label</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= link_to post.title,post %></td>
+        <td><%= link_to post.body,post %></td>
+        <td><%= post.created_at %></td>
+        <td><%= image_tag post.avatar_url,style: 'height:30px;width:30px;'  %></td>
+        <td><%= post.time_to_read %></td>
+        <td><%=post.user_id%></td>
+        <td>
+          <% post.labels.each do |l|%>
+            <option value=l.index><%= l.label_name %></option>
+          <%end%>
+        </td>
+        <td><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+ <%if user_signed_in?%>
+<%# <%= link_to 'New Post',new_post_path , class: "btn btn-outline-secondary btn-sm" %>
+<% @posts.each do |post| %>
+<div class="container">
+  <div class="container text-center">
+  <div class="row">
+    <div class="col">
+      <h6 class=" font-weight-bold float-left"><%=post.user.user_name%></h6><br>
+      <h6 class="font-weight-bold"><%= link_to post.title,post  %></h6><br>
+      <p><%= post.body %></p><br>
+      <p class="float-left"><%= post.created_at%> &nbsp;&nbsp;&nbsp; <%= post.time_to_read+"min" %></p>
+      <%# <h6>Label Here</h6> %>
+    </div>
+    <div class="col">
+     <%= image_tag post.avatar_url,style: 'height:150px;width:250px;'  %>
+    </div>
+  </div>
+</div>
+</div>
+<br/><br/><br/><br/>
+<% end %>
+<% end %>
+

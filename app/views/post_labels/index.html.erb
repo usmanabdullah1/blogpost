@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Post labels</h1>
+
+<div id="post_labels">
+  <% @post_labels.each do |post_label| %>
+    <%= render post_label %>
+    <p>
+      <%= link_to "Show this post label", post_label %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New post label", new_post_label_path %>
